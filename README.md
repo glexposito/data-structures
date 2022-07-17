@@ -1,3 +1,5 @@
 # Data Structures - CI/CD tests
-Simple C# implementation of a queue with two stacks and some unit tests to configure CI/CD and make some tests with TeamCity, Azure DevOps and Jenkins. 
+C# implementation of a queue with stacks.
+C# implementation of a stack with queues.
+Some unit tests were added to setup CI/CD with TeamCity, Azure DevOps and Jenkins. 
 
