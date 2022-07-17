@@ -1,32 +1,32 @@
-using DataStructures.Queues;
+using DataStructures.Collections;
 using System.Reflection;
 
 namespace DataStructures.UnitTests
 {
-    public class TwoStacksQueueTest
+    public class MyQueueTest
     {
-        private readonly TwoStacksQueue<int> _twoStacksQueue;
-        private Stack<int> _inputStack;
-        private Stack<int> _outputStack;
+        private readonly MyQueue<int> _queue;
+        private readonly Stack<int> _inputStack;
+        private readonly Stack<int> _outputStack;
 
-        public TwoStacksQueueTest()
+        public MyQueueTest()
         {
             _inputStack = new Stack<int>();
             _outputStack = new Stack<int>();
 
-            _twoStacksQueue = new TwoStacksQueue<int>();
+            _queue = new MyQueue<int>();
 
-            FieldInfo? inputField = typeof(TwoStacksQueue<int>).GetField("_input", BindingFlags.NonPublic | BindingFlags.Instance);
-            inputField?.SetValue(_twoStacksQueue, _inputStack);
+            FieldInfo? inputField = typeof(MyQueue<int>).GetField("_input", BindingFlags.NonPublic | BindingFlags.Instance);
+            inputField?.SetValue(_queue, _inputStack);
 
-            FieldInfo? outputField = typeof(TwoStacksQueue<int>).GetField("_output", BindingFlags.NonPublic | BindingFlags.Instance);
-            outputField?.SetValue(_twoStacksQueue, _outputStack);
+            FieldInfo? outputField = typeof(MyQueue<int>).GetField("_output", BindingFlags.NonPublic | BindingFlags.Instance);
+            outputField?.SetValue(_queue, _outputStack);
         }
 
         [Fact]
         public void IsEmpty_When_EmptyInputStack_And_EmptyOutputStack_Returns_True()
         {
-            var result = _twoStacksQueue.IsEmpty();
+            var result = _queue.IsEmpty();
 
             Assert.True(result);
         }
@@ -36,7 +36,7 @@ namespace DataStructures.UnitTests
         {
             _inputStack.Push(0);
 
-            var result = _twoStacksQueue.IsEmpty();
+            var result = _queue.IsEmpty();
 
             Assert.False(result);
         }
@@ -46,7 +46,7 @@ namespace DataStructures.UnitTests
         {
             _outputStack.Push(0);
 
-            var result = _twoStacksQueue.IsEmpty();
+            var result = _queue.IsEmpty();
 
             Assert.False(result);
         }
@@ -56,7 +56,7 @@ namespace DataStructures.UnitTests
         {
             var item = 0;
 
-            _twoStacksQueue.Enqueue(item);
+            _queue.Enqueue(item);
 
             Assert.True(item == _inputStack.Peek());
         }
@@ -70,7 +70,7 @@ namespace DataStructures.UnitTests
             _inputStack.Push(firstItem);
             _inputStack.Push(secondItem);
 
-            var removedItem = _twoStacksQueue.Dequeue();
+            var removedItem = _queue.Dequeue();
 
             Assert.True(removedItem == firstItem && _outputStack.Count == 1);
         }
@@ -84,7 +84,7 @@ namespace DataStructures.UnitTests
             _inputStack.Push(firstItem);
             _inputStack.Push(secondItem);
 
-            var returnedItem = _twoStacksQueue.Peek();
+            var returnedItem = _queue.Peek();
 
             Assert.True(returnedItem == firstItem && _outputStack.Count == 2);
         }
