@@ -1,11 +1,11 @@
-﻿namespace DataStructures.Queues
+﻿namespace DataStructures.Collections
 {
-    public class TwoStacksQueue<T>
+    public class MyQueue<T>
     {
         private readonly Stack<T> _input;
         private readonly Stack<T> _output;
 
-        public TwoStacksQueue()
+        public MyQueue()
         {
             _input = new Stack<T>();
             _output = new Stack<T>();
